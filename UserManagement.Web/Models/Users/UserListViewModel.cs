@@ -1,4 +1,6 @@
-﻿namespace UserManagement.Web.Models.Users;
+﻿using UserManagement.Models;
+
+namespace UserManagement.Web.Models.Users;
 
 public class UserListViewModel
 {
@@ -7,6 +9,14 @@ public class UserListViewModel
 
 public class UserListItemViewModel
 {
+    public UserListItemViewModel(User user)
+    {
+        Id = user.Id;
+        Forename = user.Forename;
+        Surname = user.Surname;
+        Email = user.Email;
+        IsActive = user.IsActive;
+    }
     public long Id { get; set; }
     public string? Forename { get; set; }
     public string? Surname { get; set; }
