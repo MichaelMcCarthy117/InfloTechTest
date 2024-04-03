@@ -50,4 +50,9 @@ public class DataContext : DbContext, IDataContext
         base.Remove(entity);
         SaveChanges();
     }
+
+    public new void SaveChanges()
+    {
+        _ = base.SaveChanges();
+    }
 }
