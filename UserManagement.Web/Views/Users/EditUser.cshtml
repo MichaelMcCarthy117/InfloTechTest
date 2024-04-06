@@ -9,11 +9,11 @@
 <form asp-controller="Users" asp-action="Edit" asp-route-userId="@Model.UserId" method="post">
     <div class="mb-3">
         <label for="forename" class="form-label">Forename</label>
-        <input type="text" class="form-control" id="forename" name="Forename" value="@Model.Forename" required>
+        <input type="text" class="form-control" id="forename" name="Forename" value="@Model.Forename" required maxlength="50">
     </div>
     <div class="mb-3">
         <label for="surname" class="form-label">Surname</label>
-        <input type="text" class="form-control" id="surname" name="Surname" value="@Model.Surname" required>
+        <input type="text" class="form-control" id="surname" name="Surname" value="@Model.Surname" required maxlength="50">
     </div>
     <div class="mb-3">
         <label for="dateOfBirth" class="form-label">Date of Birth</label>
@@ -21,7 +21,7 @@
     </div>
     <div class="mb-3">
         <label for="email" class="form-label">Email</label>
-        <input type="email" class="form-control" id="email" name="Email" value="@Model.Email" required>
+        <input type="email" class="form-control" id="email" name="Email" value="@Model.Email" required maxlength="254">
     </div>
     <div class="mb-3 form-check">
         <input type="checkbox" class="form-check-input" id="isActive" name="IsActive" value="true" @(Model.IsActive ? "checked" : "")>
