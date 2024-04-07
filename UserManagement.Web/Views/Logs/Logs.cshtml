@@ -1,0 +1,119 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.PageTitle</title> <!-- Use ViewBag to dynamically set the page title -->
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/site.css?v=w1mNYuscKYj6pXZh4YNqMZBB0mZ41S5DLTlJqyAiRu0">
+    <link rel="stylesheet" href="/helloworld.styles.css">
+    <style>
+        .table-container {
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <!-- Header content -->
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            <h2>@ViewBag.PageTitle</h2> <!-- Use ViewBag to dynamically set the page title -->
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>First Name</th>
+                            <th>Action</th>
+                            <th>View Details</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var log in Model)
+                        {
+                            var logDetails = $"{log.Time},{log.ID},{log.FirstName},{log.LastName},{log.DateOfBirth},{log.Email},{log.Active},{log.Action}";
+                            <tr>
+                                <td>@log.FirstName</td>
+                                <td>@log.Action</td>
+                                <td>
+                                    <a href="#" class="log-entry-link" data-log-details="@logDetails">View Details</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="logDetailsModal" tabindex="-1" aria-labelledby="logDetailsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="logDetailsModalLabel">Log Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <table class="table">
+                        <tbody id="logDetailsContent">
+                            <!-- Log details will be inserted here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/lib/jquery/dist/jquery.min.js"></script>
+    <script src="/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0"></script>
+
+    <!-- JavaScript to handle modal -->
+    <script>
+        $(document).ready(function () {
+            $('.log-entry-link').click(function () {
+                var logDetails = $(this).data('log-details');
+                var logDetailsArray = logDetails.split(',').map(function (item) {
+                    return item.trim();
+                });
+                var logHtml = '';
+                logHtml += '<tr><td>Time:</td><td>' + logDetailsArray[0] + '</td></tr>';
+                logHtml += '<tr><td>ID:</td><td>' + logDetailsArray[1] + '</td></tr>';
+                logHtml += '<tr><td>First Name:</td><td>' + logDetailsArray[2] + '</td></tr>';
+                logHtml += '<tr><td>Last Name:</td><td>' + logDetailsArray[3] + '</td></tr>';
+                logHtml += '<tr><td>Date of Birth:</td><td>' + logDetailsArray[4] + '</td></tr>';
+                logHtml += '<tr><td>Email:</td><td>' + logDetailsArray[5] + '</td></tr>';
+                logHtml += '<tr><td>Active:</td><td>' + (logDetailsArray[6].toLowerCase() === 'true' ? 'Yes' : 'No') + '</td></tr>';
+                logHtml += '<tr><td>Action:</td><td>' + logDetailsArray[7] + '</td></tr>';
+                $('#logDetailsContent').html(logHtml);
+                $('#logDetailsModal').modal('show');
+            });
+        });
+    </script>
+</body>
+</html>

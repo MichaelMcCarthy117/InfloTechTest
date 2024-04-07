@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UserManagement.Data;
 using UserManagement.Models;
 using UserManagement.Services.Domain.Interfaces;
@@ -22,4 +23,31 @@ public class UserService : IUserService
     }
 
     public IEnumerable<User> GetAll() => _dataAccess.GetAll<User>();
+
+    public User? GetUserById(long userId)
+    {
+        return _dataAccess.GetAll<User>().FirstOrDefault(user => user.Id == userId);
+    }
+
+    public void AddUser(User user)
+    {
+        _dataAccess.Create(user);
+        _dataAccess.SaveChanges(user);
+    }
+
+    public void UpdateUser(User user)
+    {
+        _dataAccess.Update(user);
+        _dataAccess.SaveChanges(user);
+    }
+
+    public void DeleteUser(long userId)
+    {
+        var userToDelete = _dataAccess.GetAll<User>().FirstOrDefault(user => user.Id == userId);
+        if (userToDelete != null)
+        {
+            _dataAccess.Delete(userToDelete);
+            _dataAccess.SaveChanges(userToDelete);
+        }
+    }
 }

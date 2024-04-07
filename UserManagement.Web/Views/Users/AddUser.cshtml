@@ -1,0 +1,30 @@
+﻿@model UserManagement.Web.Models.Users.AddUserViewModel
+
+<h2>Add User</h2>
+
+<form asp-controller="Users" asp-action="AddUser" method="post">
+    <div class="mb-3">
+        <label for="forename" class="form-label">Forename</label>
+        <input type="text" class="form-control" id="forename" name="Forename" required maxlength="50">
+    </div>
+    <div class="mb-3">
+        <label for="surname" class="form-label">Surname</label>
+        <input type="text" class="form-control" id="surname" name="Surname" required maxlength="50">
+    </div>
+    <div class="mb-3">
+        <label for="dateOfBirth" class="form-label">Date of Birth</label>
+        <input type="date" class="form-control" id="dateOfBirth" name="DateOfBirth" required>
+    </div>
+    <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" class="form-control" id="email" name="Email" required maxlength="254">
+    </div>
+    <div class="mb-3 form-check">
+        <input type="checkbox" class="form-check-input" id="isActive" name="IsActive" value="true">
+        <label class="form-check-label" for="isActive">Active</label>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <a asp-controller="Users" asp-action="List" class="btn btn-secondary">Back to List</a>
+</form>
+
+
