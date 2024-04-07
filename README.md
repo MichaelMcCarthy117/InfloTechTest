@@ -5,6 +5,22 @@ We recommend that you use [Visual Studio (Community Edition)](https://visualstud
 
 **The application uses an in-memory database, so changes will not be persisted between executions.**
 
+## Dependencies
+
+- **Serilog** (version 3.1.1): Used for structured logging.
+- **Serilog.AspNetCore** (version 8.0.1): Provides integration with ASP.NET Core logging.
+- **Serilog.Sinks.Console** (version 5.0.1): Sends log output to the console.
+- **Serilog.Sinks.File** (version 5.0.0): Sends log output to log files.
+
+## Installation
+
+To install the required dependencies, use NuGet Package Manager:
+
+* Install-Package Serilog
+* Install-Package Serilog.AspNetCore
+* Install-Package Serilog.Sinks.Console
+* Install-Package Serilog.Sinks.File
+
 ## The Exercise
 Complete as many of the tasks below as you can. These are split into 3 levels of difficulty 
 * **Standard** - Functionality that is common when working as a web developer
