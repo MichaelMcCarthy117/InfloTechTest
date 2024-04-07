@@ -32,13 +32,13 @@ public class UserService : IUserService
     public void AddUser(User user)
     {
         _dataAccess.Create(user);
-        _dataAccess.SaveChanges();
+        _dataAccess.SaveChanges(user);
     }
 
     public void UpdateUser(User user)
     {
         _dataAccess.Update(user);
-        _dataAccess.SaveChanges();
+        _dataAccess.SaveChanges(user);
     }
 
     public void DeleteUser(long userId)
@@ -47,7 +47,7 @@ public class UserService : IUserService
         if (userToDelete != null)
         {
             _dataAccess.Delete(userToDelete);
-            _dataAccess.SaveChanges();
+            _dataAccess.SaveChanges(userToDelete);
         }
     }
 }

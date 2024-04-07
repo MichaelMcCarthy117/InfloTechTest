@@ -32,5 +32,5 @@ public interface IDataContext
     /// <summary>
     /// Save changes to the data store
     /// </summary>
-    void SaveChanges();
+    void SaveChanges<TEntity>(TEntity entity) where TEntity : class;
 }

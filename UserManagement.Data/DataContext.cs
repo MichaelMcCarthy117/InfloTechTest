@@ -47,12 +47,18 @@ public class DataContext : DbContext, IDataContext
 
     public void Delete<TEntity>(TEntity entity) where TEntity : class
     {
-        base.Remove(entity);
+        var entry = Entry(entity);
+        if (entry.State == EntityState.Detached)
+        {
+            return;
+        }
+
+        Remove(entity);
         SaveChanges();
     }
 
-    public new void SaveChanges()
+    public void SaveChanges<TEntity>(TEntity entity) where TEntity : class
     {
-        _ = base.SaveChanges();
+        base.SaveChanges();
     }
 }
